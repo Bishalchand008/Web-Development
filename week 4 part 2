@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--
+         Name: Your Name
+         File: gallery.html
+         Date: 15 September 2023
+         Simple image gallery with thumbnail navigation and darken effect.
+    -->
+    
+    <title>Image Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .full-img {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .displayed-img {
+            width: 100%;
+            display: block;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0);
+        }
+        .dark {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            padding: 5px 10px;
+            background: white;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+        .thumb-bar img {
+            width: 20%;
+            float: left;
+            cursor: pointer;
+        }
+        .thumb-bar::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image gallery example</h1>
+    <div class="full-img">
+        <img class="displayed-img" src="images/pic1.jpg" alt="Closeup of a blue human eye">
+        <div class="overlay"></div>
+        <button class="dark">Darken</button>
+    </div>
+    <div class="thumb-bar"></div>
+
+    <script>
+        // Image data
+        const imageFiles = ['pic1.jpg', 'pic2.jpg', 'pic3.jpg', 'pic4.jpg', 'pic5.jpg'];
+        const altText = {
+            'pic1.jpg': 'Closeup of a blue human eye',
+            'pic2.jpg': 'Rock that looks like a wave',
+            'pic3.jpg': 'Purple and white flowers',
+            'pic4.jpg': 'Ancient Egyptian wall painting',
+            'pic5.jpg': 'Butterfly on a leaf'
+        };
+
+        // Get DOM elements
+        const thumbBar = document.querySelector('.thumb-bar');
+        const displayedImg = document.querySelector('.displayed-img');
+        const overlay = document.querySelector('.overlay');
+        const btn = document.querySelector('.dark');
+
+        // Create thumbnails
+        imageFiles.forEach(filename => {
+            const thumbImg = document.createElement('img');
+            thumbImg.src = 'images/' + filename;
+            thumbImg.alt = altText[filename];
+            thumbBar.appendChild(thumbImg);
+
+            // Add click handler for each thumbnail
+            thumbImg.addEventListener('click', () => {
+                displayedImg.src = thumbImg.src;
+                displayedImg.alt = thumbImg.alt;
+            });
+        });
+
+        // Darken/lighten button
+        btn.addEventListener('click', () => {
+            const isDark = btn.classList.contains('dark');
+            
+            if (isDark) {
+                btn.classList.remove('dark');
+                btn.classList.add('light');
+                btn.textContent = 'Lighten';
+                overlay.style.backgroundColor = 'rgba(0,0,0,0.5)';
+            } else {
+                btn.classList.remove('light');
+                btn.classList.add('dark');
+                btn.textContent = 'Darken';
+                overlay.style.backgroundColor = 'rgba(0,0,0,0)';
+            }
+        });
+    </script>
+</body>
+</html>
