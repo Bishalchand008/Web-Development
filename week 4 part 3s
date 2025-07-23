@@ -11,7 +11,7 @@
          Creative resume with interactive elements and animations.
     -->
     
-    <title>Creative Resume</title>
+    <title>Bishal Chand - Creative Resume</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
@@ -266,11 +266,11 @@
         <!-- Header Section -->
         <header class="resume-header">
             <div class="profile-image-container">
-                <img src="images/profile.jpg" alt="Profile Photo" class="profile-image">
+                <img src="images/profile.jpg" alt="Bishal Chand" class="profile-image">
                 <div class="image-overlay"></div>
             </div>
-            <h1 class="name-title">Your Name</h1>
-            <h2 class="job-title">Web Developer & Designer</h2>
+            <h1 class="name-title">Bishal Chand</h1>
+            <h2 class="job-title">Computer System Technician</h2>
             <div class="wave-divider">
                 <img src="images/wave-divider.png" alt="Decorative wave divider">
             </div>
@@ -283,9 +283,9 @@
                 <div class="contact-info card">
                     <h3>Contact</h3>
                     <ul>
-                        <li><i class="fas fa-phone"></i> (123) 456-7890</li>
-                        <li><i class="fas fa-envelope"></i> your.email@example.com</li>
-                        <li><i class="fas fa-map-marker-alt"></i> City, Country</li>
+                        <li><i class="fas fa-phone"></i> (437) 660-7492</li>
+                        <li><i class="fas fa-envelope"></i> bishalchand008@gmail.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Ontario, Canada</li>
                     </ul>
                     <div class="social-icons">
                         <a href="#" class="icon-link"><img src="images/github.svg" alt="GitHub"></a>
@@ -299,16 +299,16 @@
                     <div class="skill-category">
                         <h4>Technical</h4>
                         <ul class="skill-list">
-                            <li data-level="90">HTML/CSS</li>
-                            <li data-level="85">JavaScript</li>
-                            <li data-level="80">React</li>
+                            <li data-level="90">Computer Systems</li>
+                            <li data-level="85">Networking</li>
+                            <li data-level="80">Troubleshooting</li>
                         </ul>
                     </div>
                     <div class="skill-category">
-                        <h4>Design</h4>
+                        <h4>Software</h4>
                         <ul class="skill-list">
-                            <li data-level="75">UI/UX</li>
-                            <li data-level="70">Photoshop</li>
+                            <li data-level="75">Windows OS</li>
+                            <li data-level="70">Linux</li>
                         </ul>
                     </div>
                 </div>
@@ -316,30 +316,27 @@
 
             <!-- Right Column -->
             <section class="right-column">
-                <div class="experience card">
-                    <h3>Experience</h3>
+                <div class="education card">
+                    <h3>Education</h3>
                     <div class="timeline">
                         <div class="timeline-item">
-                            <h4>Web Developer</h4>
-                            <p class="company">Tech Solutions Inc.</p>
-                            <p class="date">2020 - Present</p>
-                            <p class="description">Developed responsive websites and web applications.</p>
-                        </div>
-                        <div class="timeline-item">
-                            <h4>Junior Developer</h4>
-                            <p class="company">Digital Creations</p>
-                            <p class="date">2018 - 2020</p>
-                            <p class="description">Assisted in front-end development projects.</p>
+                            <h4>Computer System Technician</h4>
+                            <p class="company">Durham College</p>
+                            <p class="date">2025 - 2026</p>
+                            <p class="description">Currently pursuing diploma in Computer Systems Technology.</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="education card">
-                    <h3>Education</h3>
-                    <div class="education-item">
-                        <h4>Computer Science Degree</h4>
-                        <p class="institution">State University</p>
-                        <p class="date">2014 - 2018</p>
+                <div class="experience card">
+                    <h3>Experience</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <h4>IT Support Specialist</h4>
+                            <p class="company">Tech Solutions Inc.</p>
+                            <p class="date">2023 - Present</p>
+                            <p class="description">Provided technical support and troubleshooting for various computer systems and networks.</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -347,7 +344,7 @@
 
         <!-- Footer -->
         <footer class="resume-footer">
-            <p>"Creativity is intelligence having fun." - Albert Einstein</p>
+            <p>"Technology is best when it brings people together." - Matt Mullenweg</p>
             <button class="print-btn">Print Resume</button>
         </footer>
     </div>
