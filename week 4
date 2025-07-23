@@ -8,48 +8,88 @@
          Name: Bishal Chand
          File: index.html
          Date: 17 July 2025
-         Silly story generator with custom name and unit conversion.
+         Story generator with custom name and unit conversion.
     -->
     
-    <title>Silly Story Generator</title>
+    <title>Story Generator</title>
     <style>
         body {
-            font-family: helvetica, sans-serif;
-            width: 350px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            width: 500px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 30px;
+            background-color: #f5f7fa;
         }
         label {
             font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
         }
         div {
             padding-bottom: 20px;
         }
         input[type="text"] {
-            padding: 5px;
-            width: 150px;
+            padding: 8px;
+            width: 200px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
         }
-        p {
-            background: #ffc125;
-            color: #5e2612;
-            padding: 10px;
+        .radio-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 5px;
+        }
+        button {
+            background-color: #6e8efb;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #5a7df4;
+        }
+        .story {
+            background: #e8f4ff;
+            color: #333;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            line-height: 1.6;
             visibility: hidden;
+            border-left: 4px solid #6e8efb;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
         }
     </style>
 </head>
 <body>
+    <h1>Story Generator</h1>
     <div>
-        <label for="customname">Enter custom name:</label>
-        <input id="customname" type="text" placeholder="">
+        <label for="customname">Enter a name:</label>
+        <input id="customname" type="text" placeholder="Your name">
     </div>
     <div>
-        <label for="us">US</label>
-        <input id="us" type="radio" name="ukus" value="us" checked>
-        <label for="uk">UK</label>
-        <input id="uk" type="radio" name="ukus" value="uk">
+        <label>Unit system:</label>
+        <div class="radio-group">
+            <div>
+                <input id="us" type="radio" name="ukus" value="us" checked>
+                <label for="us">US (Fahrenheit, pounds)</label>
+            </div>
+            <div>
+                <input id="uk" type="radio" name="ukus" value="uk">
+                <label for="uk">UK (Celsius, stone)</label>
+            </div>
+        </div>
     </div>
     <div>
-        <button class="randomize">Generate random story</button>
+        <button class="randomize">Generate Story</button>
     </div>
     <p class="story"></p>
 
@@ -59,11 +99,22 @@
         const randomize = document.querySelector('.randomize');
         const story = document.querySelector('.story');
         
-        // Story components
-        const storyText = 'It was 94 fahrenheit outside, so :insertx: went for a walk. When they got to :inserty:, they stared in horror for a few moments, then :insertz:. Bob saw the whole thing, but was not surprised — :insertx: weighs 300 pounds, and it was a hot day.';
-        const insertX = ['Willy the Goblin', 'Big Daddy', 'Father Christmas'];
-        const insertY = ['the soup kitchen', 'Disneyland', 'the White House'];
-        const insertZ = ['spontaneously combusted', 'melted into a puddle on the sidewalk', 'turned into a slug and crawled away'];
+        // Story templates
+        const storyTemplates = [
+            "On a :inserttemp: day, :insertx: decided to visit :inserty:. To everyone's surprise, they :insertz:. :name: witnessed it all and later said, 'I knew this would happen!'",
+            ":insertx: was enjoying a :inserttemp: afternoon at :inserty: when suddenly, they :insertz:. :name: couldn't believe their eyes!",
+            "When the temperature reached :inserttemp:, :insertx: thought it would be perfect to go to :inserty:. Little did they know they would :insertz:. :name: was there to see it all unfold."
+        ];
+        
+        const insertX = ['the friendly neighbor', 'a curious scientist', 'an adventurous traveler', 'a talented musician'];
+        const insertY = ['the local park', 'a cozy café', 'the city library', 'a beautiful garden'];
+        const insertZ = [
+            'discovered a hidden talent for painting',
+            'made friends with a group of squirrels',
+            'started telling the most fascinating stories',
+            'organized an impromptu concert',
+            'solved a mystery that puzzled everyone'
+        ];
         
         // Random selection function
         function randomValueFromArray(array) {
@@ -72,25 +123,29 @@
         
         // Generate story function
         function generateStory() {
-            let newStory = storyText;
+            // Select a random template
+            let selectedTemplate = randomValueFromArray(storyTemplates);
+            let newStory = selectedTemplate;
+            
+            // Get temperature based on unit system
+            let temperature, tempText;
+            if (document.getElementById('uk').checked) {
+                temperature = Math.floor(Math.random() * 15) + 20; // 20-35°C
+                tempText = temperature + '°C';
+            } else {
+                temperature = Math.floor(Math.random() * 30) + 68; // 68-98°F
+                tempText = temperature + '°F';
+            }
             
             // Insert random values
             newStory = newStory.replace(':insertx:', randomValueFromArray(insertX));
             newStory = newStory.replace(':inserty:', randomValueFromArray(insertY));
             newStory = newStory.replace(':insertz:', randomValueFromArray(insertZ));
+            newStory = newStory.replace(':inserttemp:', tempText);
             
             // Custom name
-            if (customName.value) {
-                newStory = newStory.replace('Bob', customName.value);
-            }
-            
-            // UK conversion
-            if (document.getElementById('uk').checked) {
-                const weight = Math.round(300 / 14) + ' stone';
-                const temp = Math.round((94 - 32) * 5 / 9) + ' centigrade';
-                newStory = newStory.replace('300 pounds', weight);
-                newStory = newStory.replace('94 fahrenheit', temp);
-            }
+            const name = customName.value || 'Alex';
+            newStory = newStory.replace(':name:', name);
             
             // Display story
             story.textContent = newStory;
